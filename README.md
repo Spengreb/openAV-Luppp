@@ -11,7 +11,7 @@ This is the repository of Luppp, the live looping tool.
 
 Intro
 -----
-This version of Luppp is designed from zero to handle realtime
+This version of Luppp is designed from zero to handle real-time
 audio, and scale with additional features as needed.
 
 This version depends on the following libraries:
