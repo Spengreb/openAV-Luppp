@@ -109,7 +109,7 @@ static void gui_header_callback(Fl_Widget *w, void *data)
 		{ "New Session" },
 		{ "Load Session" },
 		{ "Save Session   ", 0, 0, 0, FL_MENU_DIVIDER},
-		{ "Setup", 0, 0, 0, FL_MENU_DIVIDER},
+		{ "MIDI Options", 0, 0, 0, FL_MENU_DIVIDER},
 		{ "Quit" },
 		{ 0 }
 	};
@@ -191,16 +191,16 @@ static void gui_header_callback(Fl_Widget *w, void *data)
 			EventSessionSave e;
 			writeToDspRingbuffer( &e );
 		}
-	} else if ( strcmp(m->label(), "Setup") == 0 ) {
-		g->getOptionsWindow()->show();
+	} else if ( strcmp(m->label(), "MIDI Options") == 0 ) {
+		g->getMidiOptionsWindow()->show();
 	} else if ( strcmp(m->label(), "Quit") == 0 ) {
 		g->askQuit();
 	}
 }
 
-OptionsWindow* Gui::getOptionsWindow()
+MidiOptionsWindow* Gui::getMidiOptionsWindow()
 {
-	return optionWindow;
+	return midiOptionWindow;
 }
 
 void Gui::selectLoadController(Fl_Widget* w, void*)
@@ -456,7 +456,7 @@ Gui::Gui(const char* argZero) :
 	tracks.at( specialTrack )->getClipSelector()->setSpecial( specialScene );
 
 
-	optionWindow = new OptionsWindow();
+	midiOptionWindow = new MidiOptionsWindow();
 
 	// Create AudioEditor after window.end() has been called
 	audioEditor = new AudioEditor();
@@ -554,7 +554,7 @@ int Gui::quit()
 	jack->quit();
 
 	// ensure the subwindows are closed
-	optionWindow->hide();
+	midiOptionWindow->hide();
 	audioEditor->hide();
 	gui->getDiskWriter()->writeDefaultConfigToUserHome();
 	// quit main window, causing program termination
@@ -670,7 +670,7 @@ int Gui::keyboardHandler(int event)
 
 Gui::~Gui()
 {
-	delete optionWindow;
+	delete midiOptionWindow;
 	delete audioEditor;
 
 	delete diskReader;
