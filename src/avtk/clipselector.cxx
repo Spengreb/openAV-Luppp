@@ -303,8 +303,8 @@ int ClipSelector::handle(int event)
 					} else {
 						message = message + "No key set\n\n";
 					}
-					message = message + "Press new hotkey:";
-					HotkeyDialog* dialog = new HotkeyDialog(300, 125, title.c_str(), message.c_str());
+					message = message + "Press new hotkey: \n(Esc to cancel)";
+					HotkeyDialog* dialog = new HotkeyDialog(300, 140, title.c_str(), message.c_str());
 					dialog->show();
 					while (dialog->shown()) {
 						Fl::wait();
