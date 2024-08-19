@@ -5,7 +5,7 @@
 
 HotkeyDialog::HotkeyDialog(int w, int h, int currentKey)
     : Fl_Window(w, h, "Assign New Hotkey"), hotkey(0) {
-
+    this->set_modal(); // Prevent application closing without this window closing first
     current_key_label = new Fl_Box(10, 10, w - 20, 20, "Current key:");
     current_key_label->box(FL_NO_BOX);
     current_key_label->align(FL_ALIGN_INSIDE | FL_ALIGN_CENTER);
