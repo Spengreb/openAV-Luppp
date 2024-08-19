@@ -290,21 +290,7 @@ int ClipSelector::handle(int event)
 					gui->selectLoadSample( ID, clipNum );
 				} else if ( strcmp(m->label(), "Assign Hotkey") == 0 ) {
 					int currentKey = getCurrentKeyForClip(ID, clipNum);
-					char currentKeyStr[2] = {0};
-					
-					if (currentKey) {
-						currentKeyStr[0] = static_cast<char>(currentKey);
-					}
-										
-					string title = "Assign New Hotkey";
-					string message = "\nCurrent key: ";
-					if (currentKeyStr[0]){
-						message = message + string(1,  currentKeyStr[0]) + "\n\n";
-					} else {
-						message = message + "No key set\n\n";
-					}
-					message = message + "Press new hotkey: \n(Esc to cancel)";
-					HotkeyDialog* dialog = new HotkeyDialog(300, 140, title.c_str(), message.c_str());
+					HotkeyDialog* dialog = new HotkeyDialog(300, 140, currentKey);
 					dialog->show();
 					while (dialog->shown()) {
 						Fl::wait();
